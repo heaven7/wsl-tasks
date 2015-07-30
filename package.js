@@ -11,22 +11,24 @@ both = ['client','server'];
 Package.onUse(function(api) {
     api.versionsFrom('1.1.0.2');
 
-    api.use(['heaven7:wsl-core'], both);
+    api.use(['heaven7:wsl-core@0.0.1'], both);
     api.imply(['heaven7:wsl-core']);
 
     api.addFiles([
-        'router.js',
-        'tasks.js',
-        'schemas.js'
+        'lib/both/router.js',
+        'lib/both/tasks.js',
+        'lib/both/schemas.js'
     ], both);
 
     api.addFiles([
-        'templates.html',
-        'templates.js'
+        'lib/client/templates.html',
+        'lib/client/templates.js'
     ], 'client');
 
     api.addFiles([
-        'publish.js'
+        'lib/server/publish.js'
     ], 'server');
+
+    api.export('Tasks', both);
 
 });
