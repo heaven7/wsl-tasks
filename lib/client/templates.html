@@ -26,7 +26,6 @@
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
-        {{> afQuickField name='description'}}
         <button id="submitTaskForm" type="submit" class="btn btn-primary">Insert</button>
     {{/autoForm}}
 </template>
