@@ -1,5 +1,4 @@
 <template name="tasksList">
-    <h3>Tasks-List</h3>
     <ul>
         {{#if tasks}}
             {{#each tasks}}
@@ -7,9 +6,6 @@
             {{/each}}
         {{/if}}
     </ul>
-    {{#if loggedIn}}
-        {{> insertTaskForm}}
-    {{/if}}
 </template>
 
 <template name="task">
@@ -26,7 +22,9 @@
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
-        <button id="submitTaskForm" type="submit" class="btn btn-primary">Insert</button>
+        {{> afQuickField name='doc' value=doc type='hidden'}}
+        {{> afQuickField name='docType' value=collection type='hidden'}}
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
     {{/autoForm}}
 </template>
 
