@@ -26,7 +26,9 @@ Package.onUse(function(api) {
     ], 'client');
 
     api.addFiles([
-        'lib/server/publish.js'
+        'lib/server/publish.js',
+        'lib/server/methods.js',
+        'lib/server/allow.js'
     ], 'server');
 
     api.export('Tasks', both);
