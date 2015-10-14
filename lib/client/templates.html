@@ -1,7 +1,41 @@
 <template name="tasksList">
-    [taksList]
+    <h3>Tasks-List</h3>
+    <ul>
+        {{#if tasks}}
+            {{#each tasks}}
+                <li>{{> task}}</li>
+            {{/each}}
+        {{/if}}
+    </ul>
+    {{#if loggedIn}}
+        {{> insertTaskForm}}
+    {{/if}}
 </template>
 
 <template name="task">
-    [task]
+    {{# if selectedTask}}
+        {{> editTaskForm}}
+    {{else}}
+        <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
+        <p>{{description}}</p>
+        <button class="editTask">Edit</button>
+        <small><button class="deleteTask">Delete</button></small>
+    {{/ if}}
+</template>
+
+<template name="insertTaskForm">
+    {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
+        {{> afQuickField name='title'}}
+        {{> afQuickField name='description'}}
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">Insert</button>
+    {{/autoForm}}
+</template>
+
+<template name="editTaskForm">
+    {{#autoForm collection="Tasks" doc=doc meteormethod="updateTask" type="method" id="editTaskForm"}}
+        {{> afQuickField name='title'}}
+        {{> afQuickField name='description'}}
+        <button id="submitUpdate" type="submit">Update</button>
+        <button id="cancelUpdate" type="submit">Cancel</button>
+    {{/autoForm}}
 </template>
