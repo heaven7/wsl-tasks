@@ -10,22 +10,45 @@
 
 <template name="task">
     {{# if selectedTask}}
-        {{> editTaskForm}}
+        {{> editTaskForm doc=_id}}
     {{else}}
         <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
         <p>{{description}}</p>
+        {{#if addTask}}
+            {{> insertTaskForm }}
+        {{else}}
+            <button class="addTask">Add Task</button>
+        {{/if}}
+        {{#if addSubTask}}
+            {{> insertSubTask parent=_id doc=doc docType=docType }}
+        {{else}}
+            <button class="addSubTask">Add Subtask</button>
+        {{/if}}
         <button class="editTask">Edit</button>
         <small><button class="deleteTask">Delete</button></small>
+
+        {{#if subTasks}}
+            <ul>
+                {{#each subTasks}}
+                    <li>{{> task}}</li>
+                {{/each}}
+            </ul>
+        {{/if}}
     {{/ if}}
 </template>
 
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
+        {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
-        <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">Save Task</button>
     {{/autoForm}}
+</template>
+
+<template name="insertSubTask">
+    {{> insertTaskForm parent=parent doc=doc docType=docType}}
 </template>
 
 <template name="editTaskForm">
