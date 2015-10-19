@@ -23,7 +23,7 @@
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
-        {{> afQuickField name='docType' value=collection type='hidden'}}
+        {{> afQuickField name='docType' value=docType type='hidden'}}
         <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
     {{/autoForm}}
 </template>
