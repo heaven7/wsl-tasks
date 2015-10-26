@@ -34,6 +34,7 @@ Package.onUse(function(api) {
     api.addFiles([
         'lib/server/publish.js',
         'lib/server/methods.js',
+        'lib/server/deny.js',
         'lib/server/allow.js'
     ], 'server');
 
