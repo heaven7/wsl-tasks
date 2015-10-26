@@ -10,7 +10,7 @@
 
 <template name="task">
     {{# if selectedTask}}
-        {{> editTaskForm doc=_id}}
+        {{> editTaskForm model=this parent=parent doc=doc docType=docType }}
     {{else}}
         <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
         <p>{{description}}</p>
@@ -43,7 +43,7 @@
         {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
-        <button id="submitTaskForm" type="submit" class="btn btn-primary">Save Task</button>
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
     {{/autoForm}}
 </template>
 
@@ -52,9 +52,16 @@
 </template>
 
 <template name="editTaskForm">
-    {{#autoForm collection="Tasks" doc=doc meteormethod="updateTask" type="method" id="editTaskForm"}}
+    {{#autoForm collection="Tasks" doc=model meteormethod="updateTask" type="update" id="editTaskForm"}}
         {{> afQuickField name='title'}}
-        {{> afQuickField name='description'}}
+        {{> afQuickField name='description' row=6 }}
+        {{> afQuickField name='startDate' }}
+        {{> afQuickField name='stopDate' }}
+        {{> afQuickField name='estimatedTimeToComplete' }}
+
+        {{> afQuickField name='parent' value=parent type='hidden'}}
+        {{> afQuickField name='doc' value=doc type='hidden'}}
+        {{> afQuickField name='docType' value=docType type='hidden'}}
         <button id="submitUpdate" type="submit">Update</button>
         <button id="cancelUpdate" type="submit">Cancel</button>
     {{/autoForm}}
