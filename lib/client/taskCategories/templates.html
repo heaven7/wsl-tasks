@@ -1,0 +1,34 @@
+<template name="taskCategoriesList">
+    <ul>
+        {{#if taskCategories}}
+            {{#each taskCategories}}
+                <li>{{> taskCategory}}</li>
+            {{/each}}
+        {{/if}}
+    </ul>
+</template>
+
+<template name="taskCategory">
+    {{#if selectedTaskCategory}}
+        {{> editTaskCategoryForm doc=this }}
+    {{else}}
+        <h4>{{title}}</h4>
+        <button class="editTaskCategory">Edit</button>
+        <button class="deleteTaskCategory">Delete</button>
+    {{/if}}
+</template>
+
+<template name="insertTaskCategoryForm">
+    {{#autoForm collection="TaskCategories" meteormethod="newTaskCategory" type="insert" id="insertTaskCategoryForm"}}
+        {{> afQuickField name='title'}}
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Category</button>
+    {{/autoForm}}
+</template>
+
+<template name="editTaskCategoryForm">
+    {{#autoForm collection="TaskCategories" doc=doc meteormethod="updateTaskCategory" type="update" id="editTaskCategoryForm"}}
+        {{> afQuickField name='title'}}
+        <button id="submitUpdate" type="submit">Update</button>
+        <button id="cancelUpdate" type="submit">Cancel</button>
+    {{/autoForm}}
+</template>

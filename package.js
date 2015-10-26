@@ -17,13 +17,17 @@ Package.onUse(function(api) {
     api.addFiles([
         'lib/both/router.js',
         'lib/both/tasks.js',
+        'lib/both/taskCategories.js',
         'lib/both/schemas.js'
     ], both);
 
     api.addFiles([
-        'lib/client/templates.html',
-        'lib/client/helpers.js',
-        'lib/client/templates.js',
+        'lib/client/tasks/templates.html',
+        'lib/client/tasks/helpers.js',
+        'lib/client/tasks/templates.js',
+        'lib/client/taskCategories/templates.html',
+        'lib/client/taskCategories/helpers.js',
+        'lib/client/taskCategories/templates.js',
         'lib/client/hooks.js'
     ], 'client');
 
@@ -34,5 +38,6 @@ Package.onUse(function(api) {
     ], 'server');
 
     api.export('Tasks', both);
+    api.export('TaskCategories', both);
 
 });
