@@ -43,6 +43,7 @@
         {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
+        {{> afQuickField name='category' value=category type='hidden'}}
         <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
     {{/autoForm}}
 </template>
@@ -55,6 +56,7 @@
     {{#autoForm collection="Tasks" doc=model meteormethod="updateTask" type="update" id="editTaskForm"}}
         {{> afQuickField name='title'}}
         {{> afQuickField name='description' row=6 }}
+        {{> afQuickField name='category' options=taskCategories }}
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}

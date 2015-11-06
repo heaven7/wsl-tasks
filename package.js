@@ -25,10 +25,11 @@ Package.onUse(function(api) {
         'lib/client/tasks/templates.html',
         'lib/client/tasks/helpers.js',
         'lib/client/tasks/templates.js',
+        'lib/client/tasks/hooks.js',
         'lib/client/taskCategories/templates.html',
         'lib/client/taskCategories/helpers.js',
         'lib/client/taskCategories/templates.js',
-        'lib/client/hooks.js'
+        'lib/client/taskCategories/hooks.js'
     ], 'client');
 
     api.addFiles([
