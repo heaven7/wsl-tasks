@@ -55,11 +55,13 @@
 <template name="editTaskForm">
     {{#autoForm collection="Tasks" doc=model meteormethod="updateTask" type="update" id="editTaskForm"}}
         {{> afQuickField name='title'}}
-        {{> afQuickField name='description' row=6 }}
+        {{> afQuickField name='description' rows=6 }}
         {{> afQuickField name='category' options=taskCategories }}
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}
+        {{> afQuickField name='incomingTasks' options=incomingTasks }}
+        {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
         {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
