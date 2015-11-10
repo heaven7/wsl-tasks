@@ -61,8 +61,12 @@
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}
         {{> afQuickField name='incomingTasks' options=incomingTasks }}
-        {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
-        {{> afQuickField name='parent' value=parent type='hidden'}}
+        {{#if incomingTasks}}
+            {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
+        {{/if}}
+        {{#if outgoingTasks}}
+            {{> afQuickField name='parent' value=parent type='hidden'}}
+        {{/if}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
         <button id="submitUpdate" type="submit">Update</button>
