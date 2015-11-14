@@ -26,21 +26,9 @@
         {{> afQuickField name='title'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
-        <div class="actions">
-            <button id="submitTaskCategoryForm" type="submit" class="ui left approve button">Add</button>
-            <button class="ui cancel button">Cancel</button>
-        </div>
-        {{/autoForm}}
-</template>
-
-<template name="insertTaskCategoryModal">
-    <div class="ui modal" id="insertTaskCategoryModal">
-        <i class="close icon"></i>
-        <div class="header">Add Category to project</div>
-        <div class="content">
-            {{> insertTaskCategoryForm doc=doc docType=docType}}
-        </div>
-    </div>
+        <button id="submitTaskCategoryForm" type="submit">Add</button>
+        <button id="cancelTaskCategoryForm">Cancel</button>
+    {{/autoForm}}
 </template>
 
 <template name="editTaskCategoryForm">
