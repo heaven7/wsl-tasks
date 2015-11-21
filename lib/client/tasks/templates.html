@@ -9,11 +9,16 @@
 </template>
 
 <template name="task">
-    {{# if selectedTask}}
+    {{#if editTask}}
         {{> editTaskForm model=this parent=parent doc=doc docType=docType }}
     {{else}}
-        <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
-        <p>{{description}}</p>
+       {{#if selectedTask}}
+           {{> showtask}}
+       {{else}}
+           <a href="#" class="selectTask">
+                <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
+           </a>
+       {{/if}}
         {{#if addTask}}
             {{> insertTaskForm }}
         {{else}}
@@ -38,6 +43,14 @@
     {{/ if}}
 </template>
 
+<template name="showtask">
+    <h4>{{title}}</h4>
+    <small> - {{createdAt}}</small>
+    <p>{{description}}</p>
+    <p>{{startDate}}</p>
+    <p>{{stopDate}}</p>
+    <p>{{estimatedTimeToComplete}}</p>
+</template>
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
@@ -61,13 +74,13 @@
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}
-        {{> afQuickField name='incomingTasks' options=incomingTasks }}
         {{#if incomingTasks}}
-            {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
+            {{> afQuickField name='incomingTasks' options=incomingTasks }}
         {{/if}}
         {{#if outgoingTasks}}
-            {{> afQuickField name='parent' value=parent type='hidden'}}
+            {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
         {{/if}}
+        {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
         <button id="submitUpdate" type="submit">Update</button>
