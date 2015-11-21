@@ -9,37 +9,33 @@
 </template>
 
 <template name="task">
-    <a class="selectTask" href="#">
+    {{# if selectedTask}}
+        {{> editTaskForm model=this parent=parent doc=doc docType=docType }}
+    {{else}}
         <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
-    </a>
-    {{#if addTask}}
-        {{> insertTaskForm }}
-    {{else}}
-        <button class="addTask">Add Task</button>
-    {{/if}}
-    {{#if addSubTask}}
-        {{> insertSubTask parent=_id doc=doc docType=docType }}
-    {{else}}
-        <button class="addSubTask">Add Subtask</button>
-    {{/if}}
-    {{> membershipButton collection='Tasks' _id=_id buttontext='applyForTask' }}
-    <button class="editTask">Edit</button>
-    <small><button class="deleteTask">Delete</button></small>
+        <p>{{description}}</p>
+        {{#if addTask}}
+            {{> insertTaskForm }}
+        {{else}}
+            <button class="addTask">Add Task</button>
+        {{/if}}
+        {{#if addSubTask}}
+            {{> insertSubTask parent=_id doc=doc docType=docType }}
+        {{else}}
+            <button class="addSubTask">Add Subtask</button>
+        {{/if}}
+        {{> membershipButton collection='Tasks' _id=_id buttontext='applyForTask' }}
+        <button class="editTask">Edit</button>
+        <small><button class="deleteTask">Delete</button></small>
 
-    {{#if subTasks}}
-        <ul>
-            {{#each subTasks}}
-                <li>{{> task}}</li>
-            {{/each}}
-        </ul>
-    {{/if}}
-</template>
-
-<template name="taskShow">
-    <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
-    <p>{{description}}</p>
-    <p>{{startDate}}</p>
-    <p>{{stopDate}}</p>
+        {{#if subTasks}}
+            <ul>
+                {{#each subTasks}}
+                    <li>{{> task}}</li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    {{/ if}}
 </template>
 
 <template name="insertTaskForm">
@@ -65,12 +61,15 @@
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}
+        {{> afQuickField name='incomingTasks' options=incomingTasks }}
         {{#if incomingTasks}}
-            {{> afQuickField name='incomingTasks' options=incomingTasks }}
-        {{/if}}
-        {{#if outgoingTasks}}
             {{> afQuickField name='outgoingTasks' options=outgoingTasks }}
         {{/if}}
+        {{#if outgoingTasks}}
+            {{> afQuickField name='parent' value=parent type='hidden'}}
+        {{/if}}
+        {{> afQuickField name='doc' value=doc type='hidden'}}
+        {{> afQuickField name='docType' value=docType type='hidden'}}
         <button id="submitUpdate" type="submit">Update</button>
         <button id="cancelUpdate">Cancel</button>
     {{/autoForm}}
