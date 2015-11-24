@@ -13,11 +13,26 @@
         {{> editTaskCategoryForm doc=this }}
     {{else}}
         <h4>{{title}}</h4>
+
+        {{# if addTaskSubCategory}}
+            {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=buttonTextSubCategory}}
+        {{else}}
+            <button class="addTaskSubCategory">Add SubCategory</button>
+        {{/if}}
+
         <button class="editTaskCategory">Edit Category</button>
         <button class="deleteTaskCategory">Delete Category</button>
     {{/if}}
     <hr />
     <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
+
+    {{#if taskSubCategories}}
+        <ul>
+            {{#each taskSubCategories}}
+                <li>{{> taskCategory}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
     {{> tasksList doc=doc docType=docType category=_id}}
 </template>
 
@@ -26,7 +41,8 @@
         {{> afQuickField name='title'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
-        <button id="submitTaskCategoryForm" type="submit">Add</button>
+        {{> afQuickField name='parent' value=parent type='hidden'}}
+        <button id="submitTaskCategoryForm" type="submit">{{buttonText}}</button>
         <button id="cancelTaskCategoryForm">Cancel</button>
     {{/autoForm}}
 </template>
