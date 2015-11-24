@@ -22,16 +22,16 @@
         {{#if addTask}}
             {{> insertTaskForm }}
         {{else}}
-            <button class="addTask">Add Task</button>
+            <button class="addTask">{{_ "add_task"}}</button>
         {{/if}}
         {{#if addSubTask}}
             {{> insertSubTask parent=_id doc=doc docType=docType }}
         {{else}}
-            <button class="addSubTask">Add Subtask</button>
+            <button class="addSubTask">{{_ "add_subtask"}}</button>
         {{/if}}
         {{> membershipButton collection='Tasks' _id=_id buttontext='applyForTask' }}
-        <button class="editTask">Edit</button>
-        <small><button class="deleteTask">Delete</button></small>
+        <button class="editTask">{{_ "edit"}}</button>
+        <small><button class="deleteTask">{{_ "delete"}}</button></small>
 
         {{#if subTasks}}
             <ul>
@@ -59,7 +59,7 @@
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
         {{> afQuickField name='category' value=category type='hidden'}}
-        <button id="submitTaskForm" type="submit" class="btn btn-primary">Add Task</button>
+        <button id="submitTaskForm" type="submit" class="btn btn-primary">{{_ "add_task"}}</button>
     {{/autoForm}}
 </template>
 
@@ -85,7 +85,7 @@
         {{> afQuickField name='parent' value=parent type='hidden'}}
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
-        <button id="submitUpdate" type="submit">Update</button>
-        <button id="cancelUpdate">Cancel</button>
+        <button id="submitUpdate" type="submit">{{_ "update"}}</button>
+        <button id="cancelUpdate">{{_ "cancel"}}</button>
     {{/autoForm}}
 </template>

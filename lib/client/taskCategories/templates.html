@@ -17,11 +17,11 @@
         {{# if addTaskSubCategory}}
             {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=buttonTextSubCategory}}
         {{else}}
-            <button class="addTaskSubCategory">Add SubCategory</button>
+            <button class="addTaskSubCategory">{{_ "add_subcategory"}}</button>
         {{/if}}
 
-        <button class="editTaskCategory">Edit Category</button>
-        <button class="deleteTaskCategory">Delete Category</button>
+        <button class="editTaskCategory">{{_ "edit"}}</button>
+        <button class="deleteTaskCategory">{{_ "delete"}}</button>
     {{/if}}
     <hr />
     <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
@@ -43,14 +43,14 @@
         {{> afQuickField name='docType' value=docType type='hidden'}}
         {{> afQuickField name='parent' value=parent type='hidden'}}
         <button id="submitTaskCategoryForm" type="submit">{{buttonText}}</button>
-        <button id="cancelTaskCategoryForm">Cancel</button>
+        <button id="cancelTaskCategoryForm">{{_ "cancel"}}</button>
     {{/autoForm}}
 </template>
 
 <template name="editTaskCategoryForm">
     {{#autoForm collection="TaskCategories" doc=doc meteormethod="updateTaskCategory" type="update" id="editTaskCategoryForm"}}
         {{> afQuickField name='title'}}
-        <button id="submitUpdate" type="submit">Update</button>
-        <button id="cancelUpdate" type="submit">Cancel</button>
+        <button id="submitUpdate" type="submit">{{_ "update"}}</button>
+        <button id="cancelUpdate" type="submit">{{_ "cancel"}}</button>
     {{/autoForm}}
 </template>
