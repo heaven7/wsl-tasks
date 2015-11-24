@@ -50,6 +50,7 @@
     <p>{{startDate}}</p>
     <p>{{stopDate}}</p>
     <p>{{estimatedTimeToComplete}}</p>
+    <p>{{publicity}}</p>
 </template>
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
@@ -74,6 +75,7 @@
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}
         {{> afQuickField name='estimatedTimeToComplete' }}
+        {{> afQuickField name='publicity' }}
         {{#if incomingTasks}}
             {{> afQuickField name='incomingTasks' options=incomingTasks }}
         {{/if}}
