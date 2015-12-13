@@ -22,16 +22,16 @@
         {{#if addTask}}
             {{> insertTaskForm }}
         {{else}}
-            <button class="addTask">{{_ "add_task"}}</button>
+            {{> button_icon_only class="addTask tiny" _id=_id content=addTaskText icon="plus"}}
         {{/if}}
         {{#if addSubTask}}
             {{> insertSubTask parent=_id doc=doc docType=docType }}
         {{else}}
-            <button class="addSubTask">{{_ "add_subtask"}}</button>
+            {{> button class="addSubTask tiny" text=addSubTaskText _id=_id}}
         {{/if}}
         {{> membershipButton collection='Tasks' _id=_id buttontext='applyForTask' }}
-        <button class="editTask">{{_ "edit"}}</button>
-        <small><button class="deleteTask">{{_ "delete"}}</button></small>
+        {{> button_icon_only class="editTask tiny" _id=_id content=editTaskText icon="edit"}}
+        {{> button_icon_only class="deleteTask red tiny" _id=_id content=deleteTaskText icon="delete"}}
 
         {{#if subTasks}}
             <ul>
@@ -52,6 +52,7 @@
     <p>{{estimatedTimeToComplete}}</p>
     <p>{{publicity}}</p>
 </template>
+
 <template name="insertTaskForm">
     {{#autoForm collection="Tasks" meteormethod="newTask" type="insert" id="insertTaskForm"}}
         {{> afQuickField name='title'}}
@@ -59,7 +60,7 @@
         {{> afQuickField name='doc' value=doc type='hidden'}}
         {{> afQuickField name='docType' value=docType type='hidden'}}
         {{> afQuickField name='category' value=category type='hidden'}}
-        <button id="submitTaskForm" type="submit" class="btn btn-primary">{{_ "add_task"}}</button>
+        {{> button_with_icon class="tiny" id="submitTaskForm" icon="plus" type="submit" text=addTaskText}}
     {{/autoForm}}
 </template>
 

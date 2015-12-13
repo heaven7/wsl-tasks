@@ -15,13 +15,12 @@
         <h4>{{title}}</h4>
 
         {{# if addTaskSubCategory}}
-            {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=buttonTextSubCategory}}
+            {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=addSubCategoryText}}
         {{else}}
-            <button class="addTaskSubCategory">{{_ "add_subcategory"}}</button>
+            {{> button_icon_only class="addTaskSubCategory tiny" _id=_id content=addSubCategoryText icon="plus"}}
         {{/if}}
-
-        <button class="editTaskCategory">{{_ "edit"}}</button>
-        <button class="deleteTaskCategory">{{_ "delete"}}</button>
+        {{> button_icon_only class="editTaskCategory tiny" _id=_id content=editText icon="edit"}}
+        {{> button_icon_only class="deleteTaskCategory red tiny" _id=_id content=deleteText icon="delete"}}
     {{/if}}
     <hr />
     <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
