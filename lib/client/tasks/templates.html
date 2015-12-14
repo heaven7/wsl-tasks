@@ -1,24 +1,17 @@
 <template name="tasksList">
-    <ul>
-        {{#if tasks}}
-            {{#each tasks}}
-                <li>{{> task}}</li>
-            {{/each}}
-        {{/if}}
-    </ul>
+    {{> accordion collection=tasks template="task" nested=true}}
 </template>
 
 <template name="task">
     {{#if editTask}}
         {{> editTaskForm model=this parent=parent doc=doc docType=docType }}
     {{else}}
-       {{#if selectedTask}}
-           {{> showtask}}
-       {{else}}
-           <a href="#" class="selectTask">
-                <h4>{{title}}<span><small> - {{createdAt}}</small></span></h4>
-           </a>
-       {{/if}}
+        <small>{{createdAt}}</small>
+        <p>{{description}}</p>
+        <p>{{startDate}}</p>
+        <p>{{stopDate}}</p>
+        <p>{{estimatedTimeToComplete}}</p>
+        <p>{{publicity}}</p>
         {{#if addTask}}
             {{> insertTaskForm }}
         {{else}}
@@ -34,23 +27,9 @@
         {{> button_icon_only class="deleteTask red tiny" _id=_id content=deleteTaskText icon="delete"}}
 
         {{#if subTasks}}
-            <ul>
-                {{#each subTasks}}
-                    <li>{{> task}}</li>
-                {{/each}}
-            </ul>
+            {{> accordion collection=subTasks template="task" nested=true}}
         {{/if}}
     {{/ if}}
-</template>
-
-<template name="showtask">
-    <h4>{{title}}</h4>
-    <small> - {{createdAt}}</small>
-    <p>{{description}}</p>
-    <p>{{startDate}}</p>
-    <p>{{stopDate}}</p>
-    <p>{{estimatedTimeToComplete}}</p>
-    <p>{{publicity}}</p>
 </template>
 
 <template name="insertTaskForm">
