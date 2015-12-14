@@ -1,19 +1,13 @@
 <template name="taskCategoriesList">
-    <ul>
-        {{#if taskCategories}}
-            {{#each taskCategories}}
-                <li>{{> taskCategory}}</li>
-            {{/each}}
-        {{/if}}
-    </ul>
+    {{#if taskCategories}}
+        {{> accordion collection=taskCategories template="taskCategory"}}
+    {{/if}}
 </template>
 
 <template name="taskCategory">
     {{#if selectedTaskCategory}}
         {{> editTaskCategoryForm doc=this }}
     {{else}}
-        <h4>{{title}}</h4>
-
         {{# if addTaskSubCategory}}
             {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=addSubCategoryText}}
         {{else}}
@@ -26,11 +20,7 @@
     <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
 
     {{#if taskSubCategories}}
-        <ul>
-            {{#each taskSubCategories}}
-                <li>{{> taskCategory}}</li>
-            {{/each}}
-        </ul>
+        {{> accordion collection=taskSubCategories template="taskCategory" nested=true}}
     {{/if}}
     {{> tasksList doc=doc docType=docType category=_id}}
 </template>
