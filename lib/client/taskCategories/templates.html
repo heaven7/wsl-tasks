@@ -1,6 +1,6 @@
 <template name="taskCategoriesList">
     {{#if taskCategories}}
-        {{> accordion collection=taskCategories template="taskCategory" class="styled fluid"}}
+        {{> accordion collection=taskCategories template="taskCategory" class="task-category styled fluid"}}
     {{/if}}
 </template>
 
@@ -20,7 +20,7 @@
     <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
 
     {{#if taskSubCategories}}
-        {{> accordion collection=taskSubCategories template="taskCategory" nested=true}}
+        {{> accordion collection=taskSubCategories template="taskCategory" class="task-subcategory" nested=true}}
     {{/if}}
     {{> tasksList doc=doc docType=docType category=_id}}
 </template>
