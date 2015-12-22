@@ -8,38 +8,23 @@
     {{#if selectedTaskCategory}}
         {{> editTaskCategoryForm doc=this }}
     {{else}}
-        {{# if addTaskSubCategory}}
-            {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=addSubCategoryText}}
-        {{else}}
-            {{> button_icon_only class="addTaskSubCategory tiny" _id=_id content=addSubCategoryText icon="plus"}}
+        {{#if userHasPermission}}
+            {{# if addTaskSubCategory}}
+                {{> insertTaskCategoryForm doc=doc docType=docType parent=_id buttonText=addSubCategoryText}}
+            {{else}}
+                {{> button_icon_only class="addTaskSubCategory tiny" _id=_id content=addSubCategoryText icon="plus"}}
+            {{/if}}
+            {{> button_icon_only class="editTaskCategory tiny" _id=_id content=editText icon="edit"}}
+            {{> button_icon_only class="deleteTaskCategory red tiny" _id=_id content=deleteText icon="delete"}}
         {{/if}}
-        {{> button_icon_only class="editTaskCategory tiny" _id=_id content=editText icon="edit"}}
-        {{> button_icon_only class="deleteTaskCategory red tiny" _id=_id content=deleteText icon="delete"}}
     {{/if}}
-    <hr />
-    <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
+    {{#if userHasPermission}}
+        <hr />
+        <p>{{> insertTaskForm doc=doc docType=docType category=_id}} </p>
+    {{/if}}
 
     {{#if taskSubCategories}}
         {{> accordion collection=taskSubCategories template="taskCategory" class="task-subcategory" nested=true}}
     {{/if}}
     {{> tasksList doc=doc docType=docType category=_id}}
-</template>
-
-<template name="insertTaskCategoryForm">
-    {{#autoForm collection="TaskCategories" meteormethod="newTaskCategory" type="insert" id="insertTaskCategoryForm"}}
-        {{> afQuickField name='title'}}
-        {{> afQuickField name='doc' value=doc type='hidden'}}
-        {{> afQuickField name='docType' value=docType type='hidden'}}
-        {{> afQuickField name='parent' value=parent type='hidden'}}
-        <button id="submitTaskCategoryForm" type="submit">{{buttonText}}</button>
-        <button id="cancelTaskCategoryForm">{{_ "cancel"}}</button>
-    {{/autoForm}}
-</template>
-
-<template name="editTaskCategoryForm">
-    {{#autoForm collection="TaskCategories" doc=doc meteormethod="updateTaskCategory" type="update" id="editTaskCategoryForm"}}
-        {{> afQuickField name='title'}}
-        <button id="submitUpdate" type="submit">{{_ "update"}}</button>
-        <button id="cancelUpdate" type="submit">{{_ "cancel"}}</button>
-    {{/autoForm}}
 </template>

@@ -1,0 +1,17 @@
+<template name="insertTaskCategoryForm">
+    {{#autoForm collection="TaskCategories" meteormethod="newTaskCategory" type="insert" id="insertTaskCategoryForm"}}
+        {{> afQuickField name='title'}}
+        {{> afQuickField name='doc' value=doc type='hidden'}}
+        {{> afQuickField name='docType' value=docType type='hidden'}}
+        {{> afQuickField name='parent' value=parent type='hidden'}}
+        {{> formCustomActions id="submitTaskCategoryForm" textSubmit=buttonText textCancel=cancel}}
+    {{/autoForm}}
+</template>
+
+<template name="editTaskCategoryForm">
+    {{#autoForm collection="TaskCategories" doc=doc meteormethod="updateTaskCategory" type="update" id="editTaskCategoryForm"}}
+        {{> afQuickField name='title'}}
+        <button id="submitUpdate" type="submit">{{_ "update"}}</button>
+        <button id="cancelUpdate" type="submit">{{_ "cancel"}}</button>
+    {{/autoForm}}
+</template>
