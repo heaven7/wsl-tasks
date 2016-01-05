@@ -1,6 +1,6 @@
 Package.describe({
   name: 'heaven7:wsl-tasks',
-  version: '0.0.3',
+  version: '0.0.3_1',
   summary: 'Tasks package',
   git: 'https://github.com/heaven7/wsl-tasks.git',
   documentation: 'README.md'
@@ -11,7 +11,7 @@ both = ['client','server'];
 Package.onUse(function(api) {
     api.versionsFrom('1.2');
 
-    api.use(['heaven7:wsl-core@0.0.3'], both);
+    api.use(['heaven7:wsl-core@0.0.3_1'], both);
     api.imply(['heaven7:wsl-core']);
 
     api.addFiles([
