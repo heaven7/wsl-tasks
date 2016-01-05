@@ -1,5 +1,6 @@
 <template name="editTaskForm">
     {{#autoForm collection="Tasks" doc=model meteormethod="updateTask" type="update" id="editTaskForm"}}
+        {{> afQuickField name='completed' }}
         {{> afQuickField name='title'}}
         {{> afQuickField name='description' rows=6 }}
         {{> afQuickField name='category' options=taskCategories }}
