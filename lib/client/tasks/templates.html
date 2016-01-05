@@ -6,6 +6,7 @@
     {{#if editTask}}
         {{> editTaskForm model=this parent=parent doc=doc docType=docType }}
     {{else}}
+        {{> progressBar current=completed total=100 completeClass="green" showPercent=true}}
         <small>{{createdAt}}</small>
         <p>{{description}}</p>
         <p>{{startDate}}</p>
