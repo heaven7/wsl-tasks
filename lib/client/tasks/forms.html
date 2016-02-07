@@ -2,7 +2,7 @@
     {{#autoForm collection="Tasks" doc=model meteormethod="updateTask" type="update" id="editTaskForm"}}
         {{> afQuickField name='completed' }}
         {{> afQuickField name='title'}}
-        {{> afQuickField name='description' rows=6 }}
+        {{> afQuickField name='description' rows=6 class='wysiwyg' }}
         {{> afQuickField name='category' options=taskCategories }}
         {{> afQuickField name='startDate' }}
         {{> afQuickField name='stopDate' }}

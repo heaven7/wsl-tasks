@@ -1,6 +1,6 @@
 Package.describe({
   name: 'heaven7:wsl-tasks',
-  version: '0.0.3_1',
+  version: '0.0.3_2',
   summary: 'Tasks package',
   git: 'https://github.com/heaven7/wsl-tasks.git',
   documentation: 'README.md'
