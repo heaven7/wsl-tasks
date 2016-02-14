@@ -1,18 +1,23 @@
 Package.describe({
   name: 'heaven7:wsl-tasks',
-  version: '0.0.3_2',
+  version: '0.0.3_3',
   summary: 'Tasks package',
   git: 'https://github.com/heaven7/wsl-tasks.git',
   documentation: 'README.md'
 });
 
-both = ['client','server'];
+both = ['client','server'],
+    packages = [
+        'heaven7:wsl-core@0.0.3_1',
+        'ecmascript',
+        'es5-shim'
+    ];
 
 Package.onUse(function(api) {
     api.versionsFrom('1.2');
 
-    api.use(['heaven7:wsl-core@0.0.3_1'], both);
-    api.imply(['heaven7:wsl-core']);
+    api.use(packages, both);
+    api.imply(packages);
 
     api.addFiles([
         'lib/both/router.js',
